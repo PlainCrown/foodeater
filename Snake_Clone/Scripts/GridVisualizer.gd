@@ -1,18 +1,19 @@
 extends Node2D
 
-"""This code makes the grid visible in-game and was taken and modified from the GDquest tutorial demo repository:
-	https://github.com/GDquest/Godot-engine-tutorial-demos/tree/master/2017/final/06-Grid-based%20movement"""
+"""Makes the grid visible in-game.
+This is a modified version of the grid visualizer code from the GDquest tutorial demo repository:
+https://github.com/GDquest/Godot-engine-tutorial-demos/tree/master/2017/final/06-Grid-based%20movement"""
 
 onready var quadrant_size = $"..".cell_quadrant_size
+
+const LINE_COLOR = Color(255, 255, 255)
+const LINE_WIDTH = 1
+
 var tile_size = 40
 
 
-func _ready():
-	modulate = Color(1, 1, 1, 1)
-
 func _draw():
-	var LINE_COLOR = Color(255, 255, 255)
-	var LINE_WIDTH = 1
+	# draws the grid in-game
 	for x in range(quadrant_size + 1):
 		var col_pos = x * tile_size
 		var limit = quadrant_size * tile_size
