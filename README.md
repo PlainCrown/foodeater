@@ -17,7 +17,7 @@ Recommended features for contribution:
   * Display score in the panel below the game
 
 Features that I plan to implement:
-  * Make the tail grown when food is eaten
+  * Make the tail grow when food is eaten
   * Respawn food on random cells when eaten
   * Add death on collision with walls or tail
 
