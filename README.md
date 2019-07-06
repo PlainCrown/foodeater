@@ -15,10 +15,10 @@ Recommended features for contribution:
   * Draw new food sprites
 * Add score tracking
   * Display score in the panel below the game
-* Add a way to spawn food on random cells
 
 Features that I plan to implement:
-  * Add a tail that spawns when food is eaten and follows the head
+  * Make the tail grown when food is eaten
+  * Respawn food on random cells when eaten
   * Add death on collision with walls or tail
 
 Do not work on the features that I plan to implement myself, I might have finished them already. Also do not add anything sound related to avoid issues with licensing—if you'd like to suggest additional sound effects or sound tracks, post about it in the issues tab under the "Enhancements" label.
