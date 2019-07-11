@@ -18,6 +18,10 @@ _global_script_class_icons={
 config/name="Snake_Clone"
 run/main_scene="res://Scenes/Game.tscn"
 
+[autoload]
+
+Autoload="*res://Scripts/Autoload.gd"
+
 [display]
 
 window/size/width=680

@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/Game.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Backgrounds/Background.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/GridVisualizer.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/FoodArea.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scripts/FoodArea.gd" type="Script" id=5]
-[ext_resource path="res://Scenes/SnakeBody.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/SnakeBody.tscn" type="PackedScene" id=5]
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 1 )
@@ -71,7 +70,7 @@ polygon = PoolVector2Array( 20, 0, 660, 0, 660, 20, 20, 20 )
 
 [node name="FoodArea" parent="." instance=ExtResource( 4 )]
 position = Vector2( 200, 240 )
-script = ExtResource( 5 )
 
-[node name="SnakeBody" parent="." instance=ExtResource( 6 )]
+[node name="SnakeBody" parent="." instance=ExtResource( 5 )]
 position = Vector2( 120, 320 )
+[connection signal="area_entered" from="FoodArea" to="SnakeBody" method="_on_FoodArea_area_entered"]
