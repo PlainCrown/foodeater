@@ -4,15 +4,19 @@ extends Node2D
 
 onready var snake = $SnakeBody
 onready var food = $FoodArea
+onready var UI = $UI
+onready var reset_timer = $ResetTimer
 
+var just_reset = false
 var tail_scene = preload("res://Scenes/Tail.tscn")
-var default_number_of_child_nodes = 5
 
 
 func _ready():
+	# tells the autoload how many nodes there are
+	# used in SnakeBody.gd to tell tail nodes apart from default nodes
+	Autoload.default_node_count = get_child_count()
 	# creates two tail nodes at the beginning of the game
-	add_tail()
-	add_tail()
+	add_two_tails()
 
 
 func add_tail():
@@ -57,3 +61,30 @@ func add_tail():
 		tail.last_part = snake
 	add_child(tail)
 	food.move(last_positions, current_positions, next_positions)
+
+
+func add_two_tails():
+	# adds two tails when the game starts or when it's restarted
+	add_tail()
+	add_tail()
+
+
+func _unhandled_key_input(event):
+	# resets everything to starting positions if the R key is pressed
+	if event.scancode == KEY_R:
+		# stops the player from reseting the game for 1.5 seconds after it has been reset
+		if not just_reset:
+			just_reset = true
+			reset_timer.start()
+			# deletes all tail nodes
+			for i in get_children():
+				if "Tail" in i.name:
+					i.free()
+			UI.hide_reset_request()
+			snake.reset()
+			add_two_tails()
+
+
+func _on_ResetTimer_timeout():
+	# allows the player to reset with the R key again when 1.5 seconds have passed since the last reset
+	just_reset = false

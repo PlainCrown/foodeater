@@ -28,31 +28,32 @@ func _ready():
 
 
 func _process(delta):
-	# moves the snake 
-	move_and_collide(speed * current_dir * delta)
-	# snaps the snake to the next position if it moves past it
-	if position.distance_to(current_pos) >= Autoload.tile_size:
-		position = next_pos
-	# sets the next position and stores previous position and direction
-	if position == positions[0]:
-		last_pos = current_pos
-		current_pos = position
-		last_dir = current_dir
-		current_dir = directions[0]
-		next_pos += directions[0] * Autoload.tile_size
-		clear_array()
-		
-	"""For some reason giving all snake parts equal movement speed does not make them move in sync.
-	(might be because of the variable delta that is multiplied by speed in the _process function)
-	This code forces the snake parts to maintain a Autoload.tile_size distance between each other.
-	Without this, the first part of the tail eventually exceeds the speed of the snake head and calls 
-	the clear_array() function before the snake head can append the next elements, crashing the game."""
-	if position.distance_to(last_part.position) > Autoload.tile_size:
-		speed = Autoload.default_speed + 30
-	elif position.distance_to(last_part.position) < Autoload.tile_size:
-		speed = Autoload.default_speed - 0.3
-	else:
-		speed = Autoload.default_speed
+	if Autoload.moving:
+		# moves the snake 
+		move_and_collide(speed * current_dir * delta)
+		# snaps the snake to the next position if it moves past it
+		if position.distance_to(current_pos) >= Autoload.tile_size:
+			position = next_pos
+		# sets the next position and stores previous position and direction
+		if position == positions[0]:
+			last_pos = current_pos
+			current_pos = position
+			last_dir = current_dir
+			current_dir = directions[0]
+			next_pos += directions[0] * Autoload.tile_size
+			clear_array()
+			
+		"""For some reason giving all snake parts equal movement speed does not make them move in sync.
+		(might be because of the variable delta that is multiplied by speed in the _process function)
+		This code forces the snake parts to maintain a Autoload.tile_size distance between each other.
+		Without this, the first part of the tail eventually exceeds the speed of the snake head and calls 
+		the clear_array() function before the snake head can append the next elements, crashing the game."""
+		if position.distance_to(last_part.position) > Autoload.tile_size:
+			speed = Autoload.default_speed + 30
+		elif position.distance_to(last_part.position) < Autoload.tile_size:
+			speed = Autoload.default_speed - 0.3
+		else:
+			speed = Autoload.default_speed
 
 
 func clear_array():
