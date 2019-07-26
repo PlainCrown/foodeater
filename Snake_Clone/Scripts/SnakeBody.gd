@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
-"""Responsible for all snake movement and provides positions and directions to tail nodes."""
+"""Responsible for all snake movement and provides positions and directions to tail nodes.
+	The SnakeBody node always has to be at the bottom of the node tree."""
 
 onready var main_node = $".."
 onready var food_area = $"../FoodArea"
@@ -45,7 +46,7 @@ func _unhandled_key_input(event):
 func _process(delta):
 	if Autoload.moving:
 		# moves the snake
-		var collision = move_and_collide(Autoload.default_speed * current_dir * delta)
+		var collision = move_and_collide(Autoload.default_speed * current_dir)
 		# snaps the snake to the next position if it moves past it
 		if position.distance_to(current_pos) >= Autoload.tile_size:
 			position = next_pos
@@ -68,6 +69,7 @@ func _process(delta):
 		# stops the snake and its tail from moving when it collides with a wall or itself
 		if collision != null:
 			Autoload.moving = false
+			UI.score_check()
 			UI.show_reset_request()
 
 
@@ -79,6 +81,8 @@ func pos_change(vector):
 
 func reset():
 	# sets the snake to its starting settings at the beginning of the game and after a restart
+	UI.score_check()
+	UI.point_reset()
 	last_pos = Vector2(80, 320)
 	current_pos = snake_pos.position
 	position = current_pos

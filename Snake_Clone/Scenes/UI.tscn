@@ -1,13 +1,35 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scripts/UI.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Fonts/FREELAH.otf" type="DynamicFontData" id=2]
+[ext_resource path="res://Assets/Fonts/LCD14.otf" type="DynamicFontData" id=3]
+[ext_resource path="res://Assets/UI/FastSpeed.png" type="Texture" id=4]
+[ext_resource path="res://Assets/UI/NormalSpeed.png" type="Texture" id=5]
+[ext_resource path="res://Assets/UI/SlowSpeed.png" type="Texture" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 60
 outline_size = 2
 outline_color = Color( 0.482353, 0.482353, 0.482353, 1 )
 font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 90
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 50
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 64
+extra_spacing_top = -16
+extra_spacing_char = 1
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 36
+font_data = ExtResource( 3 )
 
 [node name="UI" type="Control"]
 anchor_right = 1.0
@@ -26,3 +48,86 @@ margin_bottom = 259.0
 custom_fonts/font = SubResource( 1 )
 text = "Press R to restart"
 align = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 40.0
+margin_top = 720.0
+margin_right = -31.0
+margin_bottom = -60.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2"]
+margin_right = 609.0
+margin_bottom = 140.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2/HBoxContainer"]
+margin_right = 458.0
+margin_bottom = 140.0
+size_flags_horizontal = 3
+
+[node name="ScoreVContainer" type="VBoxContainer" parent="MarginContainer2/HBoxContainer/HBoxContainer"]
+margin_right = 267.0
+margin_bottom = 140.0
+size_flags_horizontal = 3
+
+[node name="ScoreLabel" type="Label" parent="MarginContainer2/HBoxContainer/HBoxContainer/ScoreVContainer"]
+margin_right = 267.0
+margin_bottom = 96.0
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 2 )
+text = "Score"
+
+[node name="HighScoreLabel" type="Label" parent="MarginContainer2/HBoxContainer/HBoxContainer/ScoreVContainer"]
+margin_top = 100.0
+margin_right = 267.0
+margin_bottom = 140.0
+custom_fonts/font = SubResource( 3 )
+text = "High Score"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2/HBoxContainer/HBoxContainer"]
+margin_left = 271.0
+margin_right = 458.0
+margin_bottom = 140.0
+size_flags_horizontal = 3
+
+[node name="Score" type="Label" parent="MarginContainer2/HBoxContainer/HBoxContainer/VBoxContainer"]
+margin_right = 187.0
+margin_bottom = 87.0
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 4 )
+text = "0000"
+
+[node name="HighScore" type="Label" parent="MarginContainer2/HBoxContainer/HBoxContainer/VBoxContainer"]
+margin_top = 91.0
+margin_right = 187.0
+margin_bottom = 140.0
+custom_fonts/font = SubResource( 5 )
+text = "0000"
+
+[node name="SpeedVContainer" type="VBoxContainer" parent="MarginContainer2/HBoxContainer"]
+margin_left = 462.0
+margin_right = 609.0
+margin_bottom = 140.0
+
+[node name="FastButton" type="TextureButton" parent="MarginContainer2/HBoxContainer/SpeedVContainer"]
+margin_right = 147.0
+margin_bottom = 46.0
+size_flags_vertical = 3
+texture_normal = ExtResource( 4 )
+
+[node name="NormalButton" type="TextureButton" parent="MarginContainer2/HBoxContainer/SpeedVContainer"]
+margin_top = 50.0
+margin_right = 147.0
+margin_bottom = 96.0
+size_flags_vertical = 3
+texture_normal = ExtResource( 5 )
+
+[node name="SlowButton" type="TextureButton" parent="MarginContainer2/HBoxContainer/SpeedVContainer"]
+margin_top = 100.0
+margin_right = 147.0
+margin_bottom = 140.0
+texture_normal = ExtResource( 6 )
+[connection signal="pressed" from="MarginContainer2/HBoxContainer/SpeedVContainer/FastButton" to="." method="_on_FastButton_pressed"]
+[connection signal="pressed" from="MarginContainer2/HBoxContainer/SpeedVContainer/NormalButton" to="." method="_on_NormalButton_pressed"]
+[connection signal="pressed" from="MarginContainer2/HBoxContainer/SpeedVContainer/SlowButton" to="." method="_on_SlowButton_pressed"]
