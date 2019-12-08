@@ -29,7 +29,7 @@ func hide_reset_request() -> void:
 func add_points(food_name: String) -> void:
 	# increases the players score by 10 points and displays the change
 	if food_name == "FoodArea":
-		points += 5000
+		points += 5
 	else:
 		points += 15
 	score.text = str(points)
