@@ -1,0 +1,99 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Scripts/Game.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Backgrounds/Background.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/GridVisualizer.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/FoodArea.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Frog.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/UI.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/SnakeBody.tscn" type="PackedScene" id=7]
+
+[node name="Game" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Background" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+centered = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Grid" type="TileMap" parent="."]
+editor/display_folded = true
+position = Vector2( 20, 20 )
+cell_size = Vector2( 40, 40 )
+format = 1
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="GridVisualizer" type="Node2D" parent="Grid"]
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Walls" type="Node2D" parent="."]
+editor/display_folded = true
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="LeftWall" type="StaticBody2D" parent="Walls"]
+editor/display_folded = true
+
+[node name="WallSprite" type="Sprite" parent="Walls/LeftWall"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/LeftWall"]
+polygon = PoolVector2Array( 0, 680, 0, 0, 20, 0, 20, 680 )
+
+[node name="RightWall" type="StaticBody2D" parent="Walls"]
+editor/display_folded = true
+position = Vector2( 660, 0 )
+
+[node name="WallSprite" type="Sprite" parent="Walls/RightWall"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/RightWall"]
+polygon = PoolVector2Array( 0, 680, 0, 0, 20, 0, 20, 680 )
+
+[node name="UpWall" type="StaticBody2D" parent="Walls"]
+editor/display_folded = true
+
+[node name="WallSprite" type="Sprite" parent="Walls/UpWall"]
+
+[node name="WallCollision" type="CollisionPolygon2D" parent="Walls/UpWall"]
+polygon = PoolVector2Array( 20, 0, 660, 0, 660, 20, 20, 20 )
+
+[node name="DownWall" type="StaticBody2D" parent="Walls"]
+editor/display_folded = true
+position = Vector2( 0, 660 )
+
+[node name="WallSprite" type="Sprite" parent="Walls/DownWall"]
+
+[node name="WallCollision" type="CollisionPolygon2D" parent="Walls/DownWall"]
+polygon = PoolVector2Array( 20, 0, 660, 0, 660, 20, 20, 20 )
+
+[node name="FoodArea" parent="." instance=ExtResource( 4 )]
+position = Vector2( 41, 40 )
+
+[node name="Frog" parent="." instance=ExtResource( 5 )]
+position = Vector2( 80, 40 )
+
+[node name="UI" parent="." instance=ExtResource( 6 )]
+rect_min_size = Vector2( 680, 920 )
+
+[node name="SnakePosition" type="Position2D" parent="."]
+position = Vector2( 120, 320 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="ResetTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="SnakeBody" parent="." instance=ExtResource( 7 )]
+position = Vector2( 120, 320 )
+[connection signal="area_entered" from="FoodArea" to="SnakeBody" method="_on_FoodArea_area_entered"]
+[connection signal="timeout" from="ResetTimer" to="." method="_on_ResetTimer_timeout"]

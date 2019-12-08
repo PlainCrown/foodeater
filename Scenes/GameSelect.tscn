@@ -1,0 +1,97 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Scripts/GameSelect.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Backgrounds/MenuBackground.png" type="Texture" id=2]
+[ext_resource path="res://Assets/UI/start_image.png" type="Texture" id=3]
+[ext_resource path="res://Assets/UI/slow_speed.png" type="Texture" id=4]
+[ext_resource path="res://Assets/UI/slow_speed_pressed.png" type="Texture" id=5]
+[ext_resource path="res://Assets/UI/normal_speed.png" type="Texture" id=6]
+[ext_resource path="res://Assets/UI/normal_speed_pressed.png" type="Texture" id=7]
+[ext_resource path="res://Assets/UI/fast_speed.png" type="Texture" id=8]
+[ext_resource path="res://Assets/UI/fast_speed_pressed.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Fonts/FREELAH.otf" type="DynamicFontData" id=10]
+[ext_resource path="res://Assets/UI/back_image.png" type="Texture" id=11]
+
+[sub_resource type="DynamicFont" id=1]
+size = 60
+font_data = ExtResource( 10 )
+
+[node name="GameSelect" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 680.0
+margin_bottom = 920.0
+texture = ExtResource( 2 )
+
+[node name="StartButton" type="TextureButton" parent="."]
+margin_left = 140.0
+margin_right = 540.0
+margin_bottom = 138.0
+texture_normal = ExtResource( 3 )
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+margin_left = 140.0
+margin_top = 210.0
+margin_right = -140.0
+margin_bottom = -52.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+margin_right = 400.0
+margin_bottom = 474.0
+alignment = 1
+
+[node name="SlowButton" type="TextureButton" parent="MarginContainer/VBoxContainer"]
+margin_top = 26.0
+margin_right = 400.0
+margin_bottom = 164.0
+toggle_mode = true
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 5 )
+
+[node name="NormalButton" type="TextureButton" parent="MarginContainer/VBoxContainer"]
+margin_top = 168.0
+margin_right = 400.0
+margin_bottom = 306.0
+toggle_mode = true
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 7 )
+
+[node name="FastButton" type="TextureButton" parent="MarginContainer/VBoxContainer"]
+margin_top = 310.0
+margin_right = 400.0
+margin_bottom = 448.0
+toggle_mode = true
+texture_normal = ExtResource( 8 )
+texture_pressed = ExtResource( 9 )
+
+[node name="ObstaclesLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+visible = false
+margin_top = 426.0
+margin_right = 400.0
+margin_bottom = 474.0
+custom_fonts/font = SubResource( 1 )
+text = "Obstacles"
+
+[node name="ObstaclesCheck" type="CheckBox" parent="."]
+visible = false
+margin_left = 484.0
+margin_top = 634.0
+margin_right = 508.0
+margin_bottom = 658.0
+rect_scale = Vector2( 2.2, 2.2 )
+
+[node name="BackButton" type="TextureButton" parent="."]
+margin_left = 140.0
+margin_top = 782.0
+margin_right = 540.0
+margin_bottom = 920.0
+texture_normal = ExtResource( 11 )
+[connection signal="pressed" from="StartButton" to="." method="_on_StartButton_pressed"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/SlowButton" to="." method="_on_SlowButton_toggled"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/NormalButton" to="." method="_on_NormalButton_toggled"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/FastButton" to="." method="_on_FastButton_toggled"]
+[connection signal="toggled" from="ObstaclesCheck" to="." method="_on_ObstaclesCheck_toggled"]
+[connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]
