@@ -3,16 +3,16 @@
 [ext_resource path="res://Scripts/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Backgrounds/MenuBackground.png" type="Texture" id=2]
 [ext_resource path="res://Assets/UI/start_image.png" type="Texture" id=3]
-[ext_resource path="res://Assets/UI/sound_on_image.png" type="Texture" id=4]
-[ext_resource path="res://Assets/UI/sound_off_image.png" type="Texture" id=5]
-[ext_resource path="res://Assets/UI/controls_image.png" type="Texture" id=6]
-[ext_resource path="res://Assets/UI/exit_image.png" type="Texture" id=7]
-[ext_resource path="res://Assets/Fonts/FREELAH.otf" type="DynamicFontData" id=8]
-[ext_resource path="res://Assets/UI/SnakeControls.png" type="Texture" id=9]
+[ext_resource path="res://Assets/UI/options_image.png" type="Texture" id=4]
+[ext_resource path="res://Assets/UI/controls_image.png" type="Texture" id=5]
+[ext_resource path="res://Assets/UI/exit_image.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Fonts/FREELAH.otf" type="DynamicFontData" id=7]
+[ext_resource path="res://Assets/UI/SnakeControls.png" type="Texture" id=8]
+[ext_resource path="res://Assets/UI/back_image.png" type="Texture" id=9]
 
 [sub_resource type="DynamicFont" id=1]
 size = 100
-font_data = ExtResource( 8 )
+font_data = ExtResource( 7 )
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
@@ -41,25 +41,24 @@ margin_right = 400.0
 margin_bottom = 138.0
 texture_normal = ExtResource( 3 )
 
-[node name="Sound" type="TextureButton" parent="MarginContainer/VBoxContainer"]
+[node name="Options" type="TextureButton" parent="MarginContainer/VBoxContainer"]
 margin_top = 142.0
 margin_right = 400.0
 margin_bottom = 280.0
 toggle_mode = true
 texture_normal = ExtResource( 4 )
-texture_pressed = ExtResource( 5 )
 
 [node name="Controls" type="TextureButton" parent="MarginContainer/VBoxContainer"]
 margin_top = 284.0
 margin_right = 400.0
 margin_bottom = 422.0
-texture_normal = ExtResource( 6 )
+texture_normal = ExtResource( 5 )
 
 [node name="Exit" type="TextureButton" parent="MarginContainer/VBoxContainer"]
 margin_top = 426.0
 margin_right = 400.0
 margin_bottom = 564.0
-texture_normal = ExtResource( 7 )
+texture_normal = ExtResource( 6 )
 
 [node name="Snake" type="Label" parent="."]
 margin_left = 16.0
@@ -85,11 +84,23 @@ __meta__ = {
 visible = false
 margin_right = 40.0
 margin_bottom = 40.0
-texture = ExtResource( 9 )
+texture = ExtResource( 8 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="ControlsBack" type="TextureButton" parent="."]
+visible = false
+margin_left = 140.0
+margin_top = 730.0
+margin_right = 540.0
+margin_bottom = 868.0
+texture_normal = ExtResource( 9 )
 __meta__ = {
 "_edit_lock_": true
 }
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Start" to="." method="_on_Start_pressed"]
-[connection signal="toggled" from="MarginContainer/VBoxContainer/Sound" to="." method="_on_Sound_toggled"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Options" to="." method="_on_Options_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Controls" to="." method="_on_Controls_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Exit" to="." method="_on_Exit_pressed"]
+[connection signal="pressed" from="ControlsBack" to="." method="_on_ControlsBack_pressed"]

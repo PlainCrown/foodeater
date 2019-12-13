@@ -16,6 +16,6 @@ texture = ExtResource( 2 )
 shape = SubResource( 1 )
 
 [node name="FrogTimer" type="Timer" parent="."]
-wait_time = 4.0
+wait_time = 4.2
 one_shot = true
 [connection signal="timeout" from="FrogTimer" to="." method="_on_FrogTimer_timeout"]

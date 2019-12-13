@@ -7,6 +7,9 @@ onready var food := $FoodArea
 onready var UI := $UI
 onready var reset_timer := $ResetTimer
 onready var frog := $Frog
+onready var audio_player := $AudioStreamPlayer
+
+const EAT_SOUND = preload("res://Assets/Sound/eat.wav")
 
 var just_reset := false
 var tail_scene := preload("res://Scenes/Tail.tscn")
@@ -16,8 +19,9 @@ func _ready() -> void:
 	# tells the autoload how many nodes there are
 	# used in SnakeBody.gd to tell tail nodes apart from default nodes
 	Autoload.just_started = true
-	Autoload.tail_scale = 0.999
+	Autoload.tail_scale = 0.998
 	Autoload.default_node_count = get_child_count()
+	audio_player.volume_db = Autoload.sfx_volume
 	# creates the first tail at the beginning of the game
 	add_tail("") 
 
@@ -32,6 +36,9 @@ func add_tail(food_name: String) -> void:
 	# adds any tail after the first one
 	# SnakeBody always has to be at the bottom of the node tree
 	if last_tail.name != "SnakeBody":
+		audio_player.stream = EAT_SOUND
+		audio_player.pitch_scale = rand_range(0.9, 1)
+		audio_player.play()
 		tail.current_pos = last_tail.last_pos
 		tail.current_dir = last_tail.last_dir
 		tail.next_pos = last_tail.current_pos
@@ -89,6 +96,7 @@ func _unhandled_key_input(event: InputEventKey):
 		if not just_reset:
 			just_reset = true
 			reset_timer.start()
+			Autoload.tail_scale = 0.998
 			# deletes all tail nodes
 			for i in get_children():
 				if "Tail" in i.name:

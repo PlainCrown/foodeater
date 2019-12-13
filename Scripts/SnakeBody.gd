@@ -8,7 +8,10 @@ onready var food_area := $"../FoodArea"
 onready var UI := $"../UI"
 onready var snake_pos := $"../SnakePosition"
 onready var frog := $"../Frog"
+onready var audio_player := $"../AudioStreamPlayer"
+onready var snake_sprite := $SnakeSprite
 
+const CRASH_SOUND = preload("res://Assets/Sound/crash.wav")
 const LEFT = Vector2(-1, 0)
 const RIGHT = Vector2(1, 0)
 const UP = Vector2(0, -1)
@@ -25,6 +28,7 @@ var changed_next_pos := false
 
 func _ready() -> void:
 	# starts the snake's movement at the beginning of the game
+	snake_sprite.modulate = Autoload.head_color
 	reset()
 
 
@@ -70,6 +74,9 @@ func _process(delta: float) -> void:
 		# stops the snake and its tail from moving when it collides with a wall or itself
 		if collision != null:
 			Autoload.moving = false
+			audio_player.stream = CRASH_SOUND
+			audio_player.pitch_scale = 1
+			audio_player.play()
 			UI.score_check()
 			UI.show_reset_request()
 

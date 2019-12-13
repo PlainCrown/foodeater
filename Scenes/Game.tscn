@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scripts/Game.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Backgrounds/Background.png" type="Texture" id=2]
@@ -6,7 +6,8 @@
 [ext_resource path="res://Scenes/FoodArea.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Frog.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/UI.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scenes/SnakeBody.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Assets/Sound/eat.wav" type="AudioStream" id=7]
+[ext_resource path="res://Scenes/SnakeBody.tscn" type="PackedScene" id=8]
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 1 )
@@ -93,7 +94,10 @@ __meta__ = {
 [node name="ResetTimer" type="Timer" parent="."]
 one_shot = true
 
-[node name="SnakeBody" parent="." instance=ExtResource( 7 )]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+
+[node name="SnakeBody" parent="." instance=ExtResource( 8 )]
 position = Vector2( 120, 320 )
 [connection signal="area_entered" from="FoodArea" to="SnakeBody" method="_on_FoodArea_area_entered"]
 [connection signal="timeout" from="ResetTimer" to="." method="_on_ResetTimer_timeout"]

@@ -11,7 +11,7 @@ onready var frog_collision = $FrogCollision
 var last_pos = null
 
 
-func _ready():
+func _ready() -> void:
 	visible = false
 	frog_collision.disabled = true
 
@@ -24,8 +24,8 @@ func position_check(next_pos: Vector2) -> void:
 		UI.add_points(name)
 
 
-func spawn_attempt():
-	var random = rand_range(0, 100)
+func spawn_attempt() -> void:
+	var random := rand_range(0, 100)
 	if random < 7:
 		spawn()
 
@@ -46,6 +46,6 @@ func spawn() -> void:
 	frog_timer.start()
 
 
-func _on_FrogTimer_timeout():
+func _on_FrogTimer_timeout() -> void:
 	frog_collision.disabled = true
 	visible = false

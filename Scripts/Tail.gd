@@ -12,9 +12,10 @@ var positions := []
 var directions := []
 
 
-func _ready():
+func _ready() -> void:
 	$TailSprite.scale = Vector2(Autoload.tail_scale, Autoload.tail_scale)
-	Autoload.tail_scale -= 0.001
+	$TailSprite.modulate = Autoload.tail_color
+	Autoload.tail_scale -= 0.002
 
 
 func _process(delta: float) -> void:
