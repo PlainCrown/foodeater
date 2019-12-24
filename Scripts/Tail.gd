@@ -13,19 +13,21 @@ var directions := []
 
 
 func _ready() -> void:
+	"""Scales the snake and sets its color."""
 	$TailSprite.scale = Vector2(Autoload.tail_scale, Autoload.tail_scale)
 	$TailSprite.modulate = Autoload.tail_color
 	Autoload.tail_scale -= 0.002
 
 
+# warning-ignore:unused_argument
 func _process(delta: float) -> void:
+	"""Moves the tail."""
 	if Autoload.moving:
-		# moves the tail
+# warning-ignore:return_value_discarded
 		move_and_collide(speed * current_dir)
-		# snaps the tail to the next position if it moves past it
 		if position.distance_to(current_pos) >= Autoload.tile_size:
 			position = next_pos
-		# sets the next position and stores previous position and direction
+		"""Sets the next position and stores the previous position and direction."""
 		if position == positions[0]:
 			last_pos = current_pos
 			current_pos = position
@@ -36,6 +38,6 @@ func _process(delta: float) -> void:
 
 
 func clear_array() -> void:
-	# removes the first element from both arrays
+	"""Removes the first set of directions and positions when they are reached."""
 	positions.pop_front()
 	directions.pop_front()

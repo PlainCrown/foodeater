@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
-"""Responsible for all snake movement and provides positions and directions to tail nodes.
-	The SnakeBody node always has to be at the bottom of the node tree."""
+"""Responsible for moving and reseting the snake head.
+Also provides positions and directions to all tail nodes."""
 
 onready var main_node := $".."
 onready var food_area := $"../FoodArea"
@@ -27,13 +27,13 @@ var changed_next_pos := false
 
 
 func _ready() -> void:
-	# starts the snake's movement at the beginning of the game
+	"""Sets the snake's color at the start of the game and begins its movement."""
 	snake_sprite.modulate = Autoload.head_color
 	reset()
 
 
 func _unhandled_key_input(event) -> void:
-	# sets the movement direction for the next cell and prevents moving backwards into self
+	"""Allows the user to pick the next movement direction and prevents backward movement."""
 	if event.scancode == KEY_A or event.scancode == KEY_LEFT:
 		if current_dir != RIGHT:
 			next_dir = LEFT
@@ -48,14 +48,15 @@ func _unhandled_key_input(event) -> void:
 			next_dir = DOWN
 
 
+# warning-ignore:unused_argument
 func _process(delta: float) -> void:
+	"""Moves the snake."""
 	if Autoload.moving:
-		# moves the snake
 		var collision := move_and_collide(Autoload.snake_speed * current_dir)
-		# snaps the snake to the next position if it moves past it
 		if position.distance_to(current_pos) >= Autoload.tile_size:
 			position = next_pos
-		# sets the next position and stores previous position and direction
+		
+		"""Sets the next position and stores previous position and direction."""
 		if position == next_pos:
 			changed_next_pos = true
 			last_dir = current_dir
@@ -64,33 +65,34 @@ func _process(delta: float) -> void:
 			current_pos = position
 			next_pos += next_dir * Autoload.tile_size
 			pos_change(next_pos)
-		# sends direction and position changes to tail nodes
+		
+		"""Informs tail nodes about their next positions and directions."""
 		if changed_next_pos:
 			for tail_part in range(Autoload.default_node_count, main_node.get_child_count()):
 				var tail := get_parent().get_child(tail_part)
 				tail.positions.append(current_pos)
 				tail.directions.append(current_dir)
 			changed_next_pos = false
-		# stops the snake and its tail from moving when it collides with a wall or itself
+		
+		"""Stops the movement of the snake and its tail when a collision with a wall or self occurs."""
 		if collision != null:
 			Autoload.moving = false
 			audio_player.stream = CRASH_SOUND
 			audio_player.pitch_scale = 1
 			audio_player.play()
-			UI.score_check()
 			UI.show_reset_request()
 
 
 func pos_change(vector: Vector2) -> void:
-	# asks FoodArea.gd to compare the food's location with the next position
+	"""Asks the food the and frog to compare their positions with the snake's next position."""
 	next_pos = vector
 	food_area.position_check(vector)
-	frog.position_check(vector)
+	if frog.visible == true:
+		frog.position_check(vector)
 
 
 func reset() -> void:
-	# sets the snake to its starting settings at the beginning of the game and after a restart
-	UI.score_check()
+	"""Resets the snake's settings."""
 	UI.point_reset()
 	last_pos = Vector2(80, 320)
 	current_pos = snake_pos.position

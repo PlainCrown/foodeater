@@ -8,14 +8,19 @@ extents = Vector2( 1, 1 )
 
 [node name="Frog" type="Area2D"]
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
 
 [node name="FrogSprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 
 [node name="FrogCollision" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
+disabled = true
 
 [node name="FrogTimer" type="Timer" parent="."]
-wait_time = 4.2
+wait_time = 5.0
 one_shot = true
 [connection signal="timeout" from="FrogTimer" to="." method="_on_FrogTimer_timeout"]

@@ -89,6 +89,7 @@ rect_scale = Vector2( 2, 2 )
 min_value = -40.0
 max_value = 5.0
 value = -10.0
+ticks_on_borders = true
 __meta__ = {
 "_edit_lock_": true
 }

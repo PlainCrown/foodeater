@@ -1,6 +1,6 @@
 extends Node2D
 
-"""Makes the grid visible in-game."""
+"""Draws the grid."""
 
 onready var quadrant_size: int = $"..".cell_quadrant_size
 
@@ -9,8 +9,8 @@ const LINE_WIDTH = 1
 
 
 func _draw() -> void:
+	"""Draws the grid if it's turned on in the options menu."""
 	if Autoload.show_grid:
-		# draws the grid in-game
 		for x in range(quadrant_size + 1):
 			var col_pos := x * Autoload.tile_size
 			var limit := quadrant_size * Autoload.tile_size

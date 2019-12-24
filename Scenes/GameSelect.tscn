@@ -25,18 +25,28 @@ script = ExtResource( 1 )
 margin_right = 680.0
 margin_bottom = 920.0
 texture = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="StartButton" type="TextureButton" parent="."]
 margin_left = 140.0
 margin_right = 540.0
 margin_bottom = 138.0
 texture_normal = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 margin_left = 140.0
 margin_top = 210.0
 margin_right = -140.0
 margin_bottom = -52.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 margin_right = 400.0
@@ -44,31 +54,29 @@ margin_bottom = 474.0
 alignment = 1
 
 [node name="SlowButton" type="TextureButton" parent="MarginContainer/VBoxContainer"]
-margin_top = 26.0
 margin_right = 400.0
-margin_bottom = 164.0
+margin_bottom = 138.0
 toggle_mode = true
 texture_normal = ExtResource( 4 )
 texture_pressed = ExtResource( 5 )
 
 [node name="NormalButton" type="TextureButton" parent="MarginContainer/VBoxContainer"]
-margin_top = 168.0
+margin_top = 142.0
 margin_right = 400.0
-margin_bottom = 306.0
+margin_bottom = 280.0
 toggle_mode = true
 texture_normal = ExtResource( 6 )
 texture_pressed = ExtResource( 7 )
 
 [node name="FastButton" type="TextureButton" parent="MarginContainer/VBoxContainer"]
-margin_top = 310.0
+margin_top = 284.0
 margin_right = 400.0
-margin_bottom = 448.0
+margin_bottom = 422.0
 toggle_mode = true
 texture_normal = ExtResource( 8 )
 texture_pressed = ExtResource( 9 )
 
 [node name="ObstaclesLabel" type="Label" parent="MarginContainer/VBoxContainer"]
-visible = false
 margin_top = 426.0
 margin_right = 400.0
 margin_bottom = 474.0
@@ -76,12 +84,14 @@ custom_fonts/font = SubResource( 1 )
 text = "Obstacles"
 
 [node name="ObstaclesCheck" type="CheckBox" parent="."]
-visible = false
 margin_left = 484.0
 margin_top = 634.0
 margin_right = 508.0
 margin_bottom = 658.0
 rect_scale = Vector2( 2.2, 2.2 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="BackButton" type="TextureButton" parent="."]
 margin_left = 140.0
@@ -89,6 +99,9 @@ margin_top = 782.0
 margin_right = 540.0
 margin_bottom = 920.0
 texture_normal = ExtResource( 11 )
+__meta__ = {
+"_edit_lock_": true
+}
 [connection signal="pressed" from="StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="toggled" from="MarginContainer/VBoxContainer/SlowButton" to="." method="_on_SlowButton_toggled"]
 [connection signal="toggled" from="MarginContainer/VBoxContainer/NormalButton" to="." method="_on_NormalButton_toggled"]
