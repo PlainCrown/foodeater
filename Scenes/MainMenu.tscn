@@ -67,7 +67,7 @@ margin_right = 400.0
 margin_bottom = 564.0
 texture_normal = ExtResource( 6 )
 
-[node name="Snake" type="Label" parent="."]
+[node name="FoodEater" type="Label" parent="."]
 margin_left = 16.0
 margin_top = 70.0
 margin_right = 666.0
