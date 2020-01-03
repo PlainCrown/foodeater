@@ -1,12 +1,12 @@
 ﻿# Description:
 
-A short and simple game based on the classic snake mechanics. Eat various items to increase your score and see how big you can grow. Made with the Godot Engine 3.1.
+A short and simple game based on the classic snake mechanics. Eat, grow, and set new high scores.​ Made with the Godot Engine 3.1.
 
 This game has been finished and released on [Itch.io](https://plaincrown.itch.io/), [Game Jolt](https://gamejolt.com/@PlainCrown/games), and [Kartridge](https://www.kartridge.com/profiles/PlainCrown/developed-games).
 
 # Features:
 
-* 6 different high scores to improve
+* 6 different high scores to set
 * 3 snake speeds to choose from
 * 2 types of food to eat
 * Obstacle mode for additional difficulty
