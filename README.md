@@ -1,4 +1,4 @@
-﻿# Description:
+# Description:
 
 A short and simple game based on the classic snake mechanics. Eat, grow, and set new high scores.​ Made with the Godot Engine 3.1.
 
