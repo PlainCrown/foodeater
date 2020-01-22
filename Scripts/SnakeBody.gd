@@ -84,7 +84,7 @@ func _process(delta: float) -> void:
 
 
 func pos_change(vector: Vector2) -> void:
-	"""Asks the food the and frog to compare their positions with the snake's next position."""
+	"""Tells the food the and frog to compare their positions with the snake's next position."""
 	next_pos = vector
 	food_area.position_check(vector)
 	if frog.visible == true:

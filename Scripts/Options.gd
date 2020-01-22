@@ -67,7 +67,7 @@ func _on_TailColor_color_changed(color: Color) -> void:
 	Autoload.tail_color = color
 
 
-func _on_BackButton_pressed():
+func _on_BackButton_pressed() -> void:
 	"""Exits the options menu when the back button is clicked."""
 	Autoload.save_config()
 # warning-ignore:return_value_discarded

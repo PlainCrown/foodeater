@@ -7,7 +7,7 @@
 [ext_resource path="res://Assets/UI/controls_image.png" type="Texture" id=5]
 [ext_resource path="res://Assets/UI/exit_image.png" type="Texture" id=6]
 [ext_resource path="res://Assets/Fonts/FREELAH.otf" type="DynamicFontData" id=7]
-[ext_resource path="res://Assets/UI/SnakeControls.png" type="Texture" id=8]
+[ext_resource path="res://Assets/UI/foodeater_controls.png" type="Texture" id=8]
 [ext_resource path="res://Assets/UI/back_image.png" type="Texture" id=9]
 
 [sub_resource type="DynamicFont" id=1]
@@ -18,6 +18,9 @@ font_data = ExtResource( 7 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="TextureRect" type="TextureRect" parent="."]
 margin_right = 40.0

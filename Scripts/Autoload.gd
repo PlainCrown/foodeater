@@ -135,7 +135,7 @@ func load_config() -> void:
 	tail_color = config.get_value("snake", "tail_color")
 
 
-func save_data(new_scores):
+func save_data(new_scores: Dictionary) -> void:
 	"""Creates a save file."""
 	highscore_dictionary = new_scores
 	var save_file := File.new()
@@ -151,7 +151,7 @@ func save_data(new_scores):
 	save_file.close()
 
 
-func load_data():
+func load_data() -> void:
 	"""Loads the save file."""
 	var save_file := File.new()
 	var err := save_file.open(save_path, File.READ)
@@ -164,8 +164,7 @@ func load_data():
 			3: 0,  # NORMAL
 			4: 0,  # NORMAL + OBSTACLES
 			5: 0,  # FAST
-			6: 0   # FAST + OBSTACLES
-			}
+			6: 0}   # FAST + OBSTACLES
 		print("Error while loading save file. Default settings loaded.")
 		return
 	

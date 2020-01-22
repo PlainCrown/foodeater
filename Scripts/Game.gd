@@ -31,7 +31,7 @@ func _ready() -> void:
 	nodes from being accidentally removed when the game is reset and deletes tail segments."""
 	Autoload.default_node_count = get_child_count()
 	
-	"""Sets default game settings and asks to add the first tail segment."""
+	"""Sets default game settings and tells to add the first tail segment."""
 	audio_player.volume_db = Autoload.sfx_volume
 	Autoload.tail_scale = 0.998
 	add_tail("")
@@ -126,7 +126,7 @@ func _unhandled_key_input(event: InputEventKey):
 				if "Tail" in i.name:
 					i.free()
 			
-			"""Resets things to default and asks to add a new first tail segment."""
+			"""Resets things to default and tells to add a new first tail segment."""
 			UI.hide_reset_request()
 			snake.reset()
 			add_tail("")

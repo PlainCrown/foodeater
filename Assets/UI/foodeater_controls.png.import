@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/SnakeControls.png-c1a2e2ca3f412a0d049ceb85b371cb8d.stex"
+path="res://.import/foodeater_controls.png-a885137678f0aeb702a0d847c1dcaf2e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/UI/SnakeControls.png"
-dest_files=[ "res://.import/SnakeControls.png-c1a2e2ca3f412a0d049ceb85b371cb8d.stex" ]
+source_file="res://Assets/UI/foodeater_controls.png"
+dest_files=[ "res://.import/foodeater_controls.png-a885137678f0aeb702a0d847c1dcaf2e.stex" ]
 
 [params]
 
